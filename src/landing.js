@@ -158,9 +158,13 @@ class EssayForm extends React.Component {
   handleSubmit(event) {
     let newMemory = comboFunction(hexCode, this.state.value);
     axios
-      .post("http://memoriescolorized.com:5000/memories/add", newMemory)
-      .then(res => console.log(res.data));
-    window.location.replace("/thanks");
+      .post("http://3.12.167.49/memories/add", newMemory)
+      .then(res => {
+        console.log(res.data)
+        window.location.replace("/thanks")
+      });
+    ;
+
     event.preventDefault();
   }
 
@@ -223,24 +227,13 @@ class Footer extends React.Component {
   }
 }
 
-function grabColor(x) {
-  return axios
-    .get("http://memoriescolorized.com:5000/memories") // <----you need to return here
-    .then(response => { console.log(response.data.length) }) // <----no explicit return needed
-    .catch(err => console.error);
-}
-function refreshPage() {
-  window.location.reload();
-}
-console.log(grabColor(2))
-
 class MemoryCollection extends React.Component {
   constructor(props) {
     super(props);
     this.state = { hexElem: null, descElem: null, colorElem: null };
   }
   getData() {
-    axios.get("http://localhost:5000/memories").then(response => {
+    axios.get("http://3.12.167.49/memories").then(response => {
       let counter = Math.floor(Math.random() * response.data.length)
       console.log(counter)
       let elemHex = <div className="hexText">{response.data[counter].color}</div>;
