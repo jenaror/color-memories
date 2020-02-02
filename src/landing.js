@@ -269,7 +269,7 @@ class MemoryCollection extends React.Component {
         {this.state.hexElem}
         {this.state.descElem}
         <div>
-          <Link to="/memories" onClick={refreshPage} id="loadForm" className="buttonStyles">
+          <Link to="/memories" onClick={this.getData()} id="loadForm" className="buttonStyles">
             Read some more </Link>
         </div>
         <Link to="/submit" id="loadForm" className="buttonStyles">
