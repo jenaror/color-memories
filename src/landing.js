@@ -65,7 +65,7 @@ export default function Landing() {
             <Thanks />
             <Footer />
           </Route>
-          <Route path="/memories">
+          <Route path="/memory">
             <MemoryCollection />
           </Route>
           <Route path="/">
@@ -104,7 +104,7 @@ class Homepage extends React.Component {
           </Link>
         </div>
         <div className="collectionButton">
-          <Link to="/memories" id="loadCollection" className="buttonStyles">
+          <Link to="/memory" id="loadCollection" className="buttonStyles">
             Browse memories
           </Link>
         </div>
@@ -197,7 +197,7 @@ class Thanks extends React.Component {
             Submit again
           </Link>
         </div>
-        <Link to="/memories" id="loadCollection" className="buttonStyles">
+        <Link to="/memory" id="loadCollection" className="buttonStyles">
           Browse memories
         </Link>
       </div>
@@ -240,7 +240,7 @@ class MemoryCollection extends React.Component {
     this.state = { hexElem: null, descElem: null, colorElem: null };
   }
   getData() {
-    axios.get("http://memoriescolorized.com:5000/memories").then(response => {
+    axios.get("http://localhost:5000/memories").then(response => {
       let counter = Math.floor(Math.random() * response.data.length)
       console.log(counter)
       let elemHex = <div className="hexText">{response.data[counter].color}</div>;
@@ -269,8 +269,8 @@ class MemoryCollection extends React.Component {
         {this.state.hexElem}
         {this.state.descElem}
         <div>
-          <Link to="/memories" onClick={this.getData()} id="loadForm" className="buttonStyles">
-            Read some more </Link>
+          <a href="" id="loadForm" className="buttonStyles">
+            Read some more </a>
         </div>
         <Link to="/submit" id="loadForm" className="buttonStyles">
           Submit your own </Link>
