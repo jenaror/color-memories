@@ -25,7 +25,7 @@ const memoryRouter = require('./routes/memories');
 
 app.use('/memories', memoryRouter);
 
-app.use(express.static('color-memories/build'));
+app.use(express.static('../build'));
 app.get('*', (req, res) => {
 res.sendFile(path.resolve(__dirname, 'color-memories', 'build', 'index.html'));
 });
