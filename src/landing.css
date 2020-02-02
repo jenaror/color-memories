@@ -160,7 +160,9 @@ h2 {
 .contactInfo {
   display: inline;
 }
-
+.websiteLink {
+  color: aliceblue;
+}
 .websiteLink:visited {
   color: aliceblue;
 }
