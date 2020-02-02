@@ -2,9 +2,9 @@ const express = require('express')
 const cors = require('cors')
 const mongoose = require('mongoose')
 require('dotenv').config();
-
 const app = express()
 const port = process.env.PORT || 5000
+const path = require('path');
 
 app.use(cors());
 app.use(express.json());
@@ -22,7 +22,13 @@ connection.once('open', () => {
 const memoryRouter = require('./routes/memories');
 
 
+
 app.use('/memories', memoryRouter);
+
+app.use(express.static('color-memories/build'));
+app.get('*', (req, res) => {
+res.sendFile(path.resolve(__dirname, 'color-memories', 'build', 'index.html'));
+});
 
 app.listen(port, () => {
   console.log(`Server is running on port: ${port}`);
