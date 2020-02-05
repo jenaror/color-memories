@@ -158,7 +158,7 @@ class EssayForm extends React.Component {
   handleSubmit(event) {
     let newMemory = comboFunction(hexCode, this.state.value);
     axios
-      .post("http://3.12.167.49/memories/add", newMemory)
+      .post("https://www.memoriescolorized.com/memories/add", newMemory)
       .then(res => {
         console.log(res.data)
         window.location.replace("/thanks")
@@ -233,7 +233,7 @@ class MemoryCollection extends React.Component {
     this.state = { hexElem: null, descElem: null, colorElem: null };
   }
   getData() {
-    axios.get("http://3.12.167.49/memories").then(response => {
+    axios.get("https://www.memoriescolorized.com/memories").then(response => {
       let counter = Math.floor(Math.random() * response.data.length)
       console.log(counter)
       let elemHex = <div className="hexText">{response.data[counter].color}</div>;
