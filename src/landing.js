@@ -195,7 +195,9 @@ class Thanks extends React.Component {
           Thanks for participating in this project. From here you can read
           other's submissions, or you can submit another memory.
         </p>
-        <p>You can also visit my website below or follow me on Instagram.</p>
+        <p>
+          You can visit my website below for my portfolio and other projects.
+        </p>
         <div>
           <Link to="/submit" id="loadForm" className="buttonStyles">
             Submit again
@@ -217,10 +219,7 @@ class Footer extends React.Component {
           <a href="http://jenaror.com" className="websiteLink">
             jenaror.com
           </a>
-          {"\u00A0"} | {"\u00A0"}
-          <a href="http://instagram.com/gummyyoyo" className="websiteLink">
-            Instagram
-          </a>
+         
         </div>
       </div>
     );
