@@ -87,9 +87,10 @@ class Homepage extends React.Component {
         </div>
         <div className="introBody">
           <p>
-            The purpose of this project is to see how people associate colors with specific
-            memories. Participants will be shown a randomly generated color and
-            asked to write about a memory invoked by that color.
+            The purpose of this project is to see how people associate colors
+            with specific memories. Participants will be shown a randomly
+            generated color and asked to write about a memory invoked by that
+            color.
           </p>
           <p>
             Your memory could be as simple or as detailed as you want. Once
@@ -160,11 +161,9 @@ class EssayForm extends React.Component {
     axios
       .post("https://www.memoriescolorized.com/memories/add", newMemory)
       .then(res => {
-        console.log(res.data)
-        window.location.replace("/thanks")
+        console.log(res.data);
+        window.location.replace("/thanks");
       });
-    ;
-
     event.preventDefault();
   }
 
@@ -219,7 +218,6 @@ class Footer extends React.Component {
           <a href="http://jenaror.com" className="websiteLink">
             jenaror.com
           </a>
-         
         </div>
       </div>
     );
@@ -233,13 +231,15 @@ class MemoryCollection extends React.Component {
   }
   getData() {
     axios.get("https://www.memoriescolorized.com/memories").then(response => {
-      let counter = Math.floor(Math.random() * response.data.length)
-      console.log(counter)
-      let elemHex = <div className="hexText">{response.data[counter].color}</div>;
+      let counter = Math.floor(Math.random() * response.data.length);
+      console.log(counter);
+      let elemHex = (
+        <div className="hexText">{response.data[counter].color}</div>
+      );
       let elemDesc = (
-        <div className="memoryResponse"><p>
-          {response.data[counter].description}
-        </p></div>
+        <div className="memoryResponse">
+          <p>{response.data[counter].description}</p>
+        </div>
       );
       let elemColor = {
         backgroundColor: `${response.data[counter].color}`
@@ -262,16 +262,18 @@ class MemoryCollection extends React.Component {
         {this.state.descElem}
         <div>
           <a href="" id="loadForm" className="buttonStyles">
-            Read some more </a>
+            Read some more{" "}
+          </a>
         </div>
         <Link to="/submit" id="loadForm" className="buttonStyles">
-          Submit your own </Link>
+          Submit your own{" "}
+        </Link>
         <div>
           <Link to="/" id="loadForm" className="buttonStyles">
-            Main page</Link>
+            Main page
+          </Link>
         </div>
       </div>
-
     );
   }
 }
