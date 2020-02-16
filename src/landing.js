@@ -87,15 +87,18 @@ class Homepage extends React.Component {
         </div>
         <div className="introBody">
           <p>
-            The purpose of this project is to see how people associate colors
-            with specific memories. Participants will be shown a randomly
-            generated color and asked to write about a memory invoked by that
-            color.
+            Memories, Colorized is an effort to collect human memories and their
+            connection to colors.
           </p>
           <p>
-            Your memory could be as simple or as detailed as you want. Once
-            you're ready, you can click the button below to share your memories,
-            or if you need some inspiration first, you can browse previous
+            Participants will be shown a randomly generated color and asked to
+            write about a memory invoked by that color. Your response will be
+            recorded and be publically available.
+          </p>
+          <p>
+            Your memory can be as simple or as detailed as you want. Once you're
+            ready, you can click the button below to share your memories, or if
+            you need some inspiration first, you can browse previous
             submissions.
           </p>
         </div>
@@ -109,6 +112,9 @@ class Homepage extends React.Component {
             Browse memories
           </Link>
         </div>
+        <p className="discretion">
+          <i>Responses are not moderated. Reader discretion is advised.</i>
+        </p>
       </div>
     );
   }
@@ -189,10 +195,10 @@ class Thanks extends React.Component {
   render() {
     return (
       <div className="thanksMain">
-        <h2>Thank you</h2>
+        <h2>Thank you!</h2>
         <p>
-          Thanks for participating in this project. From here you can read
-          other's submissions, or you can submit another memory.
+          Thanks for participating in this project. From here you can read other
+          submissions, or you can submit another memory.
         </p>
         <p>
           You can visit my website below for my portfolio and other projects.
@@ -227,12 +233,21 @@ class Footer extends React.Component {
 class MemoryCollection extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { hexElem: null, descElem: null, colorElem: null };
+    this.state = {
+      hexElem: <div className="hexText">Loading...</div>,
+      descElem: (
+        <div className="memoryResponse">
+          <p>Retrieving your memories.</p>
+        </div>
+      ),
+      colorElem: null
+    };
+    this.handleEvent = this.handleEvent.bind(this);
   }
   getData() {
     axios.get("https://www.memoriescolorized.com/memories").then(response => {
       let counter = Math.floor(Math.random() * response.data.length);
-      console.log(counter);
+      console.log(`Loading memory #${counter}`);
       let elemHex = (
         <div className="hexText">{response.data[counter].color}</div>
       );
@@ -249,8 +264,13 @@ class MemoryCollection extends React.Component {
         descElem: elemDesc,
         colorElem: elemColor
       });
-    }); // <----no explicit return needed
+    });
   }
+  handleEvent() {
+    this.setState({ hexElem: <div className="hexText">Loading...</div> });
+    this.getData();
+  }
+
   componentDidMount() {
     this.getData();
   }
@@ -261,7 +281,7 @@ class MemoryCollection extends React.Component {
         {this.state.hexElem}
         {this.state.descElem}
         <div>
-          <a href="" id="loadForm" className="buttonStyles">
+          <a onClick={this.handleEvent} id="loadForm" className="buttonStyles">
             Read some more{" "}
           </a>
         </div>
@@ -273,6 +293,9 @@ class MemoryCollection extends React.Component {
             Main page
           </Link>
         </div>
+        <p className="discretion">
+          <i>Responses are not moderated.</i>
+        </p>
       </div>
     );
   }
