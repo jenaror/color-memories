@@ -5,8 +5,8 @@ body {
 }
 
 body {
-  background-color: #000000;
-  background-image: linear-gradient(147deg, #434343 0%, #000000 80%);
+  background-color: #23ff01;
+  /*background-image: linear-gradient(147deg, #434343 0%, #000000 80%);*/
   text-align: center;
   font-family: "Roboto", sans-serif;
   background-repeat: no-repeat;
